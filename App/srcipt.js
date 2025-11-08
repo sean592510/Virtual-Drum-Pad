@@ -1,4 +1,3 @@
-// === SOUNDS ===
 const sounds = {
   clap: 'https://cdn.jsdelivr.net/gh/wesbos/JavaScript30@master/01%20-%20JavaScript%20Drum%20Kit/sounds/clap.wav',
   hihat: 'https://cdn.jsdelivr.net/gh/wesbos/JavaScript30@master/01%20-%20JavaScript%20Drum%20Kit/sounds/hihat.wav',
@@ -22,13 +21,11 @@ const pianoNotes = {
   'G4': 'https://cdn.jsdelivr.net/gh/gleitz/midi-js-soundfonts@master/FluidR3_GM/acoustic_grand_piano-mp3/G4.mp3'
 };
 
-// === PRELOAD ===
 const audioCache = {};
 Object.entries({...sounds, ...pianoNotes}).forEach(([k, v]) => {
   const a = new Audio(v); a.preload = 'auto'; audioCache[k] = a;
 });
 
-// === MATRIX (9x5) ===
 const matrix = document.getElementById('matrix');
 const allSounds = ['clap','hihat','kick','openhat','boom','snare','tom','tink','ride',
                    'C4','C#4','D4','D#4','E4','F4','F#4','G4'];
@@ -41,14 +38,12 @@ allSounds.forEach((s) => {
   matrix.appendChild(cell);
 });
 
-// === VOLUME ===
 const masterVol = document.getElementById('masterVolume');
 const volValue = document.getElementById('volValue');
 masterVol.addEventListener('input', () => {
   volValue.textContent = masterVol.value + '%';
 });
 
-// === SONG PATTERNS 1–9 ===
 const songPatterns = [
   { name: "1", seq: ["kick","hihat","snare","hihat","C4","E4","G4","E4"] },
   { name: "2", seq: ["boom","clap","boom","clap","G4","F4","E4","D4"] },
@@ -75,7 +70,6 @@ songPatterns.forEach((p, i) => {
   patternGrid.appendChild(btn);
 });
 
-// === PLAY SOUND ===
 function playSound(sound, isPattern = false) {
   const audio = isPattern ? new Audio(audioCache[sound].src) : audioCache[sound].cloneNode();
   audio.volume = masterVol.value / 100;
@@ -96,7 +90,6 @@ function playSound(sound, isPattern = false) {
   }
 }
 
-// === SONG PATTERN PLAYBACK ===
 let patternInterval = null;
 function playSongPattern(seq) {
   if (patternInterval) clearInterval(patternInterval);
@@ -108,7 +101,6 @@ function playSongPattern(seq) {
   }, beatMs);
 }
 
-// === LOOP, SEQUENCE, REPLAY ===
 let baseLoop = [], loopInterval = null, isLooping = false;
 let sequence = [], isSequencing = false, sequenceStartTime = 0;
 let replayTimeout = null;
@@ -122,7 +114,6 @@ const sequenceBtn = document.getElementById('sequenceBtn');
 const replayBtn = document.getElementById('replayBtn');
 const patternPanel = document.getElementById('patternPanel');
 
-// BPM
 const bpmSlider = document.getElementById('bpmSlider');
 const bpmInput = document.getElementById('bpmInput');
 const bpmValue = document.getElementById('bpmValue');
@@ -143,7 +134,6 @@ function restartPattern() {
   }
 }
 
-// Loop Base
 let capturing = false;
 loopBtn.addEventListener('click', () => {
   if (isLooping || capturing) return;
@@ -199,7 +189,6 @@ function restartLoop() {
   } 
 }
 
-// Sequence
 sequenceBtn.addEventListener('click', () => {
   if (isSequencing) {
     isSequencing = false; sequenceBtn.classList.remove('recording'); sequenceBtn.textContent = 'Sequence';
@@ -211,7 +200,6 @@ sequenceBtn.addEventListener('click', () => {
   }
 });
 
-// Replay
 replayBtn.addEventListener('click', () => {
   if (sequence.length === 0) return;
   stopReplay();
@@ -230,12 +218,10 @@ replayBtn.addEventListener('click', () => {
 });
 function stopReplay() { if (replayTimeout) clearTimeout(replayTimeout); replayTimeout = null; replayBtn.classList.remove('active'); }
 
-// Pattern Button
 patternBtn.addEventListener('click', () => {
   patternPanel.classList.toggle('active');
 });
 
-// Piano
 document.querySelector('.cell[data-sound="C4"]').addEventListener('click', () => {
   document.getElementById('pianoKeys').style.display = 'flex';
 });
@@ -243,7 +229,6 @@ document.querySelectorAll('[data-note]').forEach(k => {
   k.addEventListener('click', () => playSound(k.dataset.note));
 });
 
-// Keyboard
 document.addEventListener('keydown', e => {
   const map = { KeyQ: 'clap', KeyW: 'hihat', KeyE: 'kick', KeyA: 'openhat', KeyS: 'boom', KeyZ: 'snare', KeyX: 'tom', KeyC: 'tink' };
   if (map[e.code]) playSound(map[e.code]);
