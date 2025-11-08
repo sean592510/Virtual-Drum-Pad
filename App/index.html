@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drum Matrix + Song Patterns 1–9</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Drum Matrix + Song Patterns 1–9</h1>
+
+  <!-- 9x5 Matrix -->
+  <div class="matrix" id="matrix"></div>
+
+  <!-- Piano -->
+  <div class="piano" id="pianoKeys" style="display:none;">
+    <div class="white-key" data-note="C4"></div>
+    <div class="white-key" data-note="D4"></div>
+    <div class="white-key" data-note="E4"></div>
+    <div class="white-key" data-note="F4"></div>
+    <div class="white-key" data-note="G4"></div>
+    <div class="black-key" data-note="C#4" style="margin-left:-12px;"></div>
+    <div class="black-key" data-note="D#4"></div>
+    <div class="black-key" data-note="F#4" style="margin-left:-36px;"></div>
+  </div>
+
+  <!-- Pattern Panel (1–9) -->
+  <div class="pattern-panel" id="patternPanel">
+    <div class="pattern-grid" id="patternGrid"></div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="bpm-control">
+      <label>BPM:</label>
+      <input type="range" id="bpmSlider" min="60" max="240" value="120">
+      <input type="number" id="bpmInput" min="60" max="240" value="120">
+      <div id="bpmValue">120</div>
+    </div>
+
+    <div class="volume-control">
+      <label>Vol:</label>
+      <input type="range" id="masterVolume" min="0" max="100" value="80">
+      <div id="volValue">80%</div>
+    </div>
+
+    <div class="btn-group">
+      <button id="loopBtn">Loop Base</button>
+      <button id="stopBtn" disabled>Stop Loop</button>
+      <button id="patternBtn">Pattern</button>
+      <button id="sequenceBtn">Sequence</button>
+      <button id="replayBtn" disabled>Live Replay</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
