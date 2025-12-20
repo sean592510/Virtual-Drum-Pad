@@ -1,27 +1,34 @@
-const pads = document.querySelectorAll(".drum-pad");
+const sounds = {
+  Q: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
+  W: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
+  E: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
+  A: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
+  S: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
+  D: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"
+};
 
-// Click support
+const pads = document.querySelectorAll(".drum-pad");
+const display = document.getElementById("display");
+
+// Play on click
 pads.forEach(pad => {
   pad.addEventListener("click", () => {
     playSound(pad.dataset.key);
   });
 });
 
-// Keyboard support
-window.addEventListener("keydown", (e) => {
+// Play on key press
+window.addEventListener("keydown", e => {
   playSound(e.key.toUpperCase());
 });
 
 function playSound(key) {
-  const audio = document.querySelector(`audio[data-key="${key}"]`);
-  if (!audio) return;
+  const audioUrl = sounds[key];
+  if (!audioUrl) return;
 
-  audio.currentTime = 0; // allows rapid replay
+  const audio = new Audio(audioUrl);
+  audio.currentTime = 0;
   audio.play();
 
-  const pad = document.querySelector(`.drum-pad[data-key="${key}"]`);
-  if (pad) {
-    pad.classList.add("active");
-    setTimeout(() => pad.classList.remove("active"), 100);
-  }
+  display.innerText = `Playing: ${key}`;
 }
