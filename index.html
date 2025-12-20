@@ -3,32 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Virtual Drum & Piano Pad</title>
+  <title>Virtual Drum Pad</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <h1>🎹 Virtual Piano & 🥁 Drum Pad</h1>
-
   <div id="drum-machine">
-    <button class="drum-pad" data-key="Q">Q<br>Piano</button>
-    <button class="drum-pad" data-key="W">W<br>Piano</button>
-    <button class="drum-pad" data-key="E">E<br>Piano</button>
-
-    <button class="drum-pad" data-key="A">A<br>Kick</button>
-    <button class="drum-pad" data-key="S">S<br>Snare</button>
-    <button class="drum-pad" data-key="D">D<br>Hi-Hat</button>
+    <div class="drum-pads">
+      <button class="drum-pad" data-key="Q">Q</button>
+      <button class="drum-pad" data-key="W">W</button>
+      <button class="drum-pad" data-key="E">E</button>
+      <button class="drum-pad" data-key="A">A</button>
+      <button class="drum-pad" data-key="S">S</button>
+      <button class="drum-pad" data-key="D">D</button>
+    </div>
+    <div id="display">Play a sound!</div>
   </div>
-
-  <!-- Piano sounds -->
-  <audio data-key="Q" src="https://cdn.jsdelivr.net/npm/@audio-samples/piano-mp3-release/audio/rel1.mp3"></audio>
-  <audio data-key="W" src="https://cdn.jsdelivr.net/npm/@audio-samples/piano-mp3-release/audio/rel2.mp3"></audio>
-  <audio data-key="E" src="https://cdn.jsdelivr.net/npm/@audio-samples/piano-mp3-release/audio/rel3.mp3"></audio>
-
-  <!-- Drum sounds -->
-  <audio data-key="A" src="https://danigb.github.io/samples/audio/drum-machines/TR-808/kick.wav"></audio>
-  <audio data-key="S" src="https://danigb.github.io/samples/audio/drum-machines/TR-808/snare.wav"></audio>
-  <audio data-key="D" src="https://danigb.github.io/samples/audio/drum-machines/TR-808/hihat.wav"></audio>
 
   <script src="script.js"></script>
 </body>
