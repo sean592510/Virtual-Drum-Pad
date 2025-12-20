@@ -1,7 +1,9 @@
-# Virtual-Drum-Pad
-A Virtual Drum pad that can play  sequential sounds in a loop, Imitating a  real life drum pad 
-
-drum-matrix/
+Virtual-Drum-Pad/
 ├── index.html
-├── style.css
-└── script.js
+├── styles.css
+├── script.js
+├── sounds/            ← your audio samples
+│   ├── kick.wav
+│   ├── snare.wav
+│   └── ...
+└── .nojekyll
